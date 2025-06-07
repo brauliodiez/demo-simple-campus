@@ -1,16 +1,56 @@
 ---
+import type { Training } from './training.model'
 
+// Simulación de datos (puedes reemplazar esto con una importación real o fetch)
+const trainings: Training[] = [
+  {
+    id: 1,
+    title: "Introducción a Astro",
+    slug: "intro-astro",
+    overview: "Aprende los fundamentos de Astro en este curso básico.",
+    description: "Contenido más detallado...",
+    thumbnail: "https://via.placeholder.com/300x200?text=Astro",
+    lessons: [1, 2, 3]
+  },
+  {
+    id: 2,
+    title: "Tailwind CSS desde cero",
+    slug: "tailwind-css",
+    overview: "Estiliza tus proyectos modernos con Tailwind CSS.",
+    description: "Contenido más detallado...",
+    thumbnail: "https://via.placeholder.com/300x200?text=Tailwind",
+    lessons: [4, 5]
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Online Campus</title>
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-gray-800">Online Campus</h1>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {trainings.map(training => (
+          <a
+            href={`/training/${training.slug}`}
+            class="block bg-white shadow hover:shadow-md transition rounded-2xl overflow-hidden"
+          >
+            <img src={training.thumbnail} alt={training.title} class="w-full h-48 object-cover" />
+            <div class="p-4">
+              <h2 class="text-xl font-semibold">{training.title}</h2>
+              <p class="text-sm text-gray-600 mt-2">{training.overview}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </main>
+  </body>
 </html>
